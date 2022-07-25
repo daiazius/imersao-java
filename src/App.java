@@ -1,13 +1,12 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
-    //    System.out.println("Hello World!");
 
         String url = "https://api.mocki.io/v2/549a5d8b";
         URI endereco = URI.create(url);
@@ -19,12 +18,12 @@ public class App {
 
         String body = response.body();
 
-        JSONParser parser = new JSONParser();
+        ObjectMapper mapper = new ObjectMapper();
 
-        List<Map<String, String>> listaDeFilmes = parser.parse(body);
+        Resposta resposta = mapper.readValue(body, Resposta.class);
 
-        for(Map<String, String> filme : listaDeFilmes) {
-            System.out.println(filme.get("fullTitle"));
+        for(Movie filme : resposta.getMovieList()) {
+            System.out.println(filme.getTitle());
         }
     }
 }
