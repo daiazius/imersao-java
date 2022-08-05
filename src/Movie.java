@@ -27,7 +27,4 @@ public class Movie {
         return imDbRating;
     }
 
-    public void setImDbRating(float imDbRating) {
-        this.imDbRating = imDbRating;
-    }
 }

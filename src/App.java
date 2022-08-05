@@ -22,8 +22,8 @@ public class App {
 
         Resposta resposta = mapper.readValue(body, Resposta.class);
 
-        for(Movie filme : resposta.getMovieList()) {
-            System.out.println(filme.getTitle());
-        }
+        MoviePrinter moviePrinter = new MoviePrinter(resposta.getMovieList());
+
+        moviePrinter.printMovieList();
     }
 }
